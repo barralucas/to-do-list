@@ -2,7 +2,6 @@ import { React, useState } from 'react';
 
 
 
-
 function TodoForm(props) {
 
     const [text, setText] = useState("");
