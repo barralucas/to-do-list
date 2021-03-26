@@ -9,7 +9,7 @@ function Todo() {
 
     const [items, setItems] = useState([]);
 
-    function onAddItem(text) {
+    function onAddItem(text) { 
 
         let it = new Item(text);
 
@@ -17,12 +17,19 @@ function Todo() {
     }
 
 
+    function onItemDeleted(item) {
+
+        let filteredItems = items.filter(it => it.id !== item.id);
+        setItems(filteredItems);
+
+    }
+
     return (
         <div className="container">
             <h1>To do</h1>
 
             <TodoForm onAddItem={onAddItem}></TodoForm>
-            <List items={items}></List>
+            <List onItemDeleted={onItemDeleted} items={items}></List>
 
         </div>
     );
