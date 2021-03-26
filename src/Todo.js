@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import './Todo.css'
+import './Todo.css';
+import List from './List';
+
+
 
 function Todo() {
 
     const [text, setText] = useState("");
     const [items, setItems] = useState([]);
-
 
 
     function handleChange(event) {
@@ -29,17 +31,14 @@ function Todo() {
                 <button onClick={addItem}>add</button>
             </form>
 
+            <List items={items}></List>
 
-            <ul>
-                {items.map(item =>
-                    <li>{item}</li>
-                )}
-            </ul>
         </div>
     );
 
 
 }
+
 
 
 export default Todo;
