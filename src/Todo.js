@@ -3,7 +3,7 @@ import './Todo.css';
 import List from './components/List';
 import TodoForm from './components/TodoForm';
 import Item from './components/Item';
-
+import Modal from './components/Modal';
 
 const SAVED_ITEMS = "savedItems";
 
@@ -11,21 +11,21 @@ function Todo() {
 
     const [items, setItems] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS))
-        
-        if(savedItems){
+
+        if (savedItems) {
             setItems(savedItems);
         }
-    },[])
+    }, [])
 
 
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
-    },[items])
+    }, [items])
 
 
-    function onAddItem(text) { 
+    function onAddItem(text) {
 
         let it = new Item(text);
 
@@ -41,10 +41,10 @@ function Todo() {
     }
 
 
-    function onDone(item){
-        
-        let updateItems = items.map(it=>{
-            if(it.id === item.id){
+    function onDone(item) {
+
+        let updateItems = items.map(it => {
+            if (it.id === item.id) {
                 it.done = !it.done;
             }
             return it;
@@ -56,11 +56,15 @@ function Todo() {
 
     return (
         <div className="container">
-            <h1>To do</h1>
+            <header className='header'>
+                <h1>To do</h1>
+                <button className='addButton'>+</button>
+            </header>
 
-            <TodoForm onAddItem={onAddItem}></TodoForm>
+            {/* <TodoForm onAddItem={onAddItem}></TodoForm> */}
             <List onDone={onDone} onItemDeleted={onItemDeleted} items={items}></List>
 
+            <Modal><TodoForm onAddItem={onAddItem}></TodoForm></Modal>
         </div>
     );
 
