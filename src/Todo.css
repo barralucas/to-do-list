@@ -60,3 +60,7 @@ ul{
     background-color: white;
     border-radius: 10px;
 }
+
+.hideModal{
+    display: none;
+}

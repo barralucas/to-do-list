@@ -9,7 +9,10 @@ const SAVED_ITEMS = "savedItems";
 
 function Todo() {
 
+
     const [items, setItems] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+
 
     useEffect(() => {
         let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS))
@@ -30,6 +33,8 @@ function Todo() {
         let it = new Item(text);
 
         setItems([...items, it]);
+
+        onHideModal();
     }
 
 
@@ -53,21 +58,24 @@ function Todo() {
         setItems(updateItems);
     }
 
+    function onHideModal() {
+        setShowModal(false);
+    }
+
 
     return (
         <div className="container">
             <header className='header'>
                 <h1>To do</h1>
-                <button className='addButton'>+</button>
+                <button onClick={()=>{setShowModal(true)}} className='addButton'>+</button>
             </header>
 
             {/* <TodoForm onAddItem={onAddItem}></TodoForm> */}
             <List onDone={onDone} onItemDeleted={onItemDeleted} items={items}></List>
 
-            <Modal><TodoForm onAddItem={onAddItem}></TodoForm></Modal>
+            <Modal show={showModal} onHideModal={onHideModal}><TodoForm onAddItem={onAddItem}></TodoForm></Modal>
         </div>
     );
-
 
 }
 
