@@ -64,16 +64,17 @@ function Todo() {
 
 
     return (
-        <div className="container">
-            <header className='header'>
-                <h1>To do</h1>
-                <button onClick={()=>{setShowModal(true)}} className='addButton'>+</button>
-            </header>
-
-            {/* <TodoForm onAddItem={onAddItem}></TodoForm> */}
-            <List onDone={onDone} onItemDeleted={onItemDeleted} items={items}></List>
-
-            <Modal show={showModal} onHideModal={onHideModal}><TodoForm onAddItem={onAddItem}></TodoForm></Modal>
+        <div>
+            <div className="container dark-mode">
+                <header className='header'>
+                    <h1>To do</h1>
+                    <button onClick={()=>{setShowModal(true)}} className='addButton'>+</button>
+                    <button>dark-mode</button>
+                </header>
+                {/* <TodoForm onAddItem={onAddItem}></TodoForm> */}
+                <List onDone={onDone} onItemDeleted={onItemDeleted} items={items}></List>
+                <Modal show={showModal} onHideModal={onHideModal}><TodoForm onAddItem={onAddItem}></TodoForm></Modal>
+            </div>
         </div>
     );
 
